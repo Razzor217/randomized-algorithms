@@ -31,9 +31,6 @@ namespace randalg
     class configuration
     {
     public:
-        using size_type = std::size_t;
-        using difference_type = std::ptrdiff_t;
-
         static constexpr double const min_double {min_double_};
         static constexpr double const max_double {max_double_};
         static constexpr double const error_margin {error_margin_};

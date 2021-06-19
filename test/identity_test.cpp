@@ -22,6 +22,7 @@ int main()
     c << 2.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 2.0;
 
     std::cout << randalg::matrix_identity(a, b, c) << "\n";
+    std::cout << randalg::matrix_identity<10>(a, b, c) << "\n";
 
     return 0;
 }

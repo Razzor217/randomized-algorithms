@@ -22,9 +22,6 @@ namespace randalg
         class identity_helper
         {
         public:
-            using size_type = config::size_type;
-            using difference_type = config::difference_type;
-
             bool operator ()(Eigen::MatrixXd const& a, Eigen::MatrixXd const& b, Eigen::MatrixXd const& c);
 
             explicit identity_helper();
@@ -66,11 +63,11 @@ namespace randalg
         template <typename config>
         bool identity_helper<config>::matrix_identity(Eigen::MatrixXd const& a, Eigen::MatrixXd const& b, Eigen::MatrixXd const& c)
         {
-            Eigen::VectorXd const r {rand_vec(a.rows())};
+            Eigen::VectorXd const r {rand_vec(b.cols())};
 
-            Eigen::VectorXd const x {b * r};
-            Eigen::VectorXd const y {a * x};
-            Eigen::VectorXd const z {c * r};
+            Eigen::VectorXd const x {b * r}; // (MxP) * (Px1) -> (Mx1)
+            Eigen::VectorXd const y {a * x}; // (NxM) * (Mx1) -> (Nx1)
+            Eigen::VectorXd const z {c * r}; // (NxP) * (Px1) -> (Nx1)
 
             return ((y - z).norm() < config::error_margin) ? true : false;
         }

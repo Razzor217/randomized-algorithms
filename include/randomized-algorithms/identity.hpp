@@ -23,15 +23,32 @@ namespace randalg
                          Eigen::MatrixXd const& b,
                          Eigen::MatrixXd const& c)
     {
-        assert(a.rows == b.rows);
+        // (NxM) * (MxP) -> (NxP)
+        assert(a.cols == b.rows);
         assert(a.rows == c.rows);
-        assert(a.cols == b.cols);
-        assert(a.cols == c.cols);
-        // quadratic matrices
-        assert(a.rows == a.cols);
+        assert(b.cols == c.cols);
 
         detail::identity_helper<config> helper {};
 
         return helper(a, b, c);
+    }
+
+    template <std::size_t k, typename config = configuration<>>
+    bool matrix_identity(Eigen::MatrixXd const& a,
+                         Eigen::MatrixXd const& b,
+                         Eigen::MatrixXd const& c)
+    {
+        // (NxM) * (MxP) -> (NxP)
+        assert(a.cols == b.rows);
+        assert(a.rows == c.rows);
+        assert(b.cols == c.cols);
+
+        detail::identity_helper<config> helper {};
+
+        bool is_equal {true};
+        // k independent repetitions
+        for (std::size_t i {}; i < k && is_equal; ++i, is_equal = helper(a, b, c));
+
+        return is_equal;
     }
 } // namespace randalg
