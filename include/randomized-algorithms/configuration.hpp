@@ -1,6 +1,6 @@
 /**
  * @file configuration.hpp
- * @author yMax Beddies (max.beddies@t-online.de)
+ * @author Max Beddies (max.beddies@t-online.de)
  * @brief Configuration for randomization
  * @date 2021-06-19
  * 
