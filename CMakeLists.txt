@@ -6,7 +6,7 @@ enable_testing()
 
 include_directories(.)
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -msse4.2 -Wall -Wextra -O3 -g")
+set(CMAKE_CXX_FLAGS "-std=c++20 -msse4.2 -Wall -Wextra -O3 -g")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -21,15 +21,6 @@ else (DOXYGEN_FOUND)
     message("Package Doxygen not found!")
 endif (DOXYGEN_FOUND)
 
-if(APPLE)
-    set(EIGEN_PATH /usr/local/include/eigen3)
-    find_package(Eigen3 REQUIRED NO_MODULE)
-    include_directories(${EIGEN_PATH})
-endif()
+include_directories(${Eigen3_INCLUDE_DIR})
 
-if(UNIX AND NOT APPLE)
-    find_package(Eigen3 REQUIRED NO_MODULE)
-    include_directories(${Eigen3_INCLUDE_DIRS})
-endif()
-
-add_subdirectory(src)
+add_subdirectory(test)
