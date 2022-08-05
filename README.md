@@ -5,3 +5,7 @@ A collection of randomized algorithms that save computation time with randomness
 ## Currently implemented
 
 * Matrix identity tests, i.e. whether A * B is equal to matrix C (singular test and monte-carlo variant)
+
+## Planned features
+
+* And-Or-trees (in progress) for adversarial games
